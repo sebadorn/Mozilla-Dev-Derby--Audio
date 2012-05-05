@@ -1,3 +1,7 @@
+The working demo can be found at:
+https://developer.mozilla.org/en-US/demos/detail/star-sign-playlist
+
+
 Visualizes the tracks of a playlist as connected points. Starting at the first, it will progress to play all songs in order. Starting or pausing a song is done by clicking its corresponding point. The connection between songs works as progress bar and can be used for seeking by simply clicking on it. They also correspond to the length of their song: long song = long connection.
 
 Visualization is done with a canvas element, playback with audio. Some other elements like info bubbles or the volume control are container elements styled with CSS.
