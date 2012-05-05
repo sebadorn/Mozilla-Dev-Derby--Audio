@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+	<meta charset="utf-8" />
+	<title>Mozilla Dev Derby | April | &lt;audio&gt;</title>
+	<meta name="author" content="Sebastian Dorn" />
+	<link rel="stylesheet" href="screen.css" />
+	<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Dosis" />
+	<script src="playlist-lib-help.js"></script>
+	<script src="playlist.js"></script>
+	<script>
+		window.addEventListener( "load", function() {
+			var path = "lifes-path/",
+				album = "Life's Path",
+				artist = "Mindthings",
+				tracks = [
+					{
+						title: "Our Lives, Our Destinies",
+						artist: artist,
+						file: path + "01.ogg"
+					},
+					{
+						title: "Emotion Vibes",
+						artist: artist,
+						file: path + "03.ogg"
+					},
+					{
+						title: "Artificial World",
+						artist: artist,
+						file: path + "06.ogg"
+					},
+					{
+						title: "Reversal Situation",
+						artist: artist,
+						file: path + "09.ogg"
+					},
+					{
+						title: "AfterLife",
+						artist: artist,
+						file: path + "11.ogg"
+					}
+				],
+
+				// Let's get started!
+				playlist = new Playlist( "cnv", tracks ),
+
+				// Vars for the about box and hint at the beginning
+				pull = document.getElementById( "pull" ),
+				cnv = document.getElementById( "cnv" ),
+				starthint = document.getElementById( "start-hint" ),
+
+				hintVisible = true,
+				aboutHiddenTop = "-68px",
+				mousePressed = false;
+
+
+			// Show/hide about section.
+			pull.addEventListener( "click", function( e ) {
+				var ps = e.target.parentNode.style;
+				ps.top = ( !ps.top || ps.top == aboutHiddenTop ) ? 0 : aboutHiddenTop;
+			} );
+
+			// Just optic: Replace mouse cursor if moving view.
+			// Hide starting hint.
+			cnv.addEventListener( "mousedown", function( e ) {
+				mousePressed = true;
+				hintVisible ? starthint.style.bottom = "-100px" : hintVisible = false;
+			} );
+			cnv.addEventListener( "mouseup", function( e ) {
+				mousePressed = false; }
+			);
+			cnv.addEventListener( "mousemove", function( e ) {
+				e.target.style.cursor = mousePressed ? "move" : "auto";
+			} );
+		}, false );
+	</script>
+</head>
+<body>
+
+<p id="loading" class="dark">
+	Please wait while loading metadata of songs …
+</p>
+
+<canvas id="cnv"></canvas>
+
+<ol id="vol">
+	<li></li>
+	<li></li>
+	<li></li>
+	<li></li>
+	<li></li>
+	<li></li>
+	<li></li>
+	<li></li>
+	<li></li>
+	<li></li>
+</ol>
+
+<section id="start-hint" class="dark">
+	<strong>Playback:</strong> Click on an orb.&nbsp;&nbsp;
+	<strong>Move:</strong> Hold left mouse button and move mouse.
+</section>
+
+<section id="trackinfo" class="dark">
+	<p id="ti-title"></p>
+	<p id="ti-artist"></p>
+</section>
+
+<section id="display">
+	<p id="d-title">&lt;&lt;Title&gt;&gt;</p>
+	<p id="d-artist">&lt;&lt;Artist&gt;&gt;</p>
+	<p id="d-time-ellapsed">00:00/00:00</p>
+</section>
+
+<section class="about dark">
+	<p>Music from the album <strong>Life’s Path</strong> by <strong>Mindthings</strong>.<br />
+	Available on <a href="http://www.jamendo.com/en/list/a4219/life-s-path" target="new">Jamendo.com</a> under CC BY-NC 2.0.</p>
+	<span id="pull" class="dark">About</span>
+</section>
+
+<span id="fps" class="dark">0</span>
+
+</body>
+</html>
